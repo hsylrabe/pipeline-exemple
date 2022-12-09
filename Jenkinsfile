@@ -3,8 +3,10 @@ pipeline {
 	stages {
 		stage ('Version Maven') {
 			steps {
-				sh 'export MAVEN_HOME="/opt/apache-maven-3.8.6/bin"'
-				sh '"$MAVEN_HOME/mvn" --version'
+				sh '''
+                    		export MAVEN_HOME="/opt/apache-maven-3.8.6/bin"
+                    		"$MAVEN_HOME/mvn" --version
+                		'''
 			}		
 		}
 		stage ('Creation de fichier exemple') {
