@@ -1,11 +1,15 @@
 def MAVEN_HOME = '"/opt/apache-maven-3.8.6/bin"'
+def fichier = '"exemple"'
 node { 
 		stage ('Version Maven') {
 				sh '"${MAVEN_HOME}/mvn" --version'		
 		}
 		stage ('Creation de fichier exemple') {
-				sh 'touch exemple.txt'
-				echo '"Exemple d'un pipeline" >> exemple.txt'
+				sh 'touch "${fichier}".txt'
+				echo '"Exemple d\'un pipeline" >> "${fichier}".txt'
+		}
+		stage ('Renommage de "${fichier}"') {
+			sh 'mv "${fichier}".txt "${fichier}"-old.txt'
 		}
 		
 }
