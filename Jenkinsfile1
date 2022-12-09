@@ -1,22 +1,22 @@
 def MAVEN_HOME = "/opt/apache-maven-3.8.6/bin"
 def fichier = "exemple"
 node { 
-		stage ('Version Maven') {
-				sh "${MAVEN_HOME}/mvn --version"		
+	environment {
+		BRANCH_NAME = 'develop'
+	    }
+	stage ('Version Maven') {
+			sh "${MAVEN_HOME}/mvn --version"		
+	}
+	stage ('Creation de fichier exemple') {
+			sh "touch ${fichier}.txt"
+			echo "Exemple d\'un pipeline >> ${fichier}.txt"
+	}
+	stage ('Renommage de "${fichier}"') {
+		sh "mv ${fichier}.txt ${fichier}-old.txt"
+	}
+	stage ('Branche develop') {
+		if (env.BRANCH_NAME == 'develop') {
+			echo 'Hello Manuel!'
 		}
-		stage ('Creation de fichier exemple') {
-				sh "touch ${fichier}.txt"
-				echo "Exemple d\'un pipeline >> ${fichier}.txt"
-		}
-		stage ('Renommage de "${fichier}"') {
-			sh "mv ${fichier}.txt ${fichier}-old.txt"
-		}
-		stage ('Branche develop') {
-			if (env.BRANCH_NAME == 'develop') {
-				echo 'Hello Manuel!'
-			}
-		}		
+	}		
 }
-environment {
-        BRANCH_NAME = 'develop'
-    }
