@@ -36,7 +36,7 @@ pipeline {
 		}
 		stage ('Test') {
 			agent {
-				docker { image : 'node:16.13.1-alpine' }	
+				docker { image 'node:16.13.1-alpine' }	
 			}
 			steps {
 				sh 'node --version'
