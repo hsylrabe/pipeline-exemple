@@ -1,6 +1,9 @@
 def MAVEN_HOME = "/opt/apache-maven-3.8.6/bin"
 def fichier = "exemple"
-node { 
+node {
+	environment {
+        	BRANCH_NAME = 'develop'
+    	}
 		stage ('Version Maven') {
 				sh "${MAVEN_HOME}/mvn --version"		
 		}
@@ -19,6 +22,4 @@ node {
 		}	
 		
 }
-environment {
-        BRANCH_NAME = 'develop'
-    }
+
