@@ -17,3 +17,6 @@ node {
 			}
 		}		
 }
+environment {
+        BRANCH_NAME = 'develop'
+    }
