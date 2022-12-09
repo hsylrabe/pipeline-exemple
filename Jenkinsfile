@@ -1,11 +1,14 @@
 pipeline {
 	agent any
+	parameters {
+		string(name: 'BRANCH', defaultValue: 'master', description: 'Name of the branche to use.')
+	}
 	stages {
 		stage ('Version Maven') {
 			steps {
 				script {
-					sh 'echo "${env.BRANCH_NAME}"'
-					if (env.BRANCH_NAME == 'develop') {
+					sh 'echo ${params.BRANCH}"'
+					if (params.BRANCH == 'develop') {
 						sh '''
 						export MAVEN_HOME="/opt/apache-maven-3.8.6/bin"
 						"$MAVEN_HOME/mvn" --version
