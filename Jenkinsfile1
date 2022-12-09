@@ -12,6 +12,7 @@ node {
 			sh "mv ${fichier}.txt ${fichier}-old.txt"
 		}
 		stage ('Branche develop') {
+			echo "${env.BRANCH_NAME}"
 			if (env.BRANCH_NAME == 'develop') {
 				echo 'Hello Manuel!'
 			}
