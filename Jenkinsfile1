@@ -11,5 +11,10 @@ node {
 		stage ('Renommage de "${fichier}"') {
 			sh "mv ${fichier}.txt ${fichier}-old.txt"
 		}
+		stage ('Branche develop') {
+			if (env.BRANCH_NAME == 'develop') {
+				echo 'Hello Manuel!'
+			}
+		}	
 		
 }
