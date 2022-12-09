@@ -2,6 +2,7 @@ pipeline {
 	agent any
 	parameters {
 		string(name: 'BRANCH', defaultValue: 'master', description: 'Name of the branche to use.')
+		choice(name:'ENVIRONMENT' , choices: ['int','ap','op'])
 	}
 	stages {
 		stage ('Version Maven') {
@@ -24,6 +25,14 @@ pipeline {
 				sh 'touch exemple.txt'
 				sh 'echo "Exemple d\'un pipeline" >> exemple.txt'
 			}
-		}	
+		}
+		stage ('Deploy app') {
+			when {
+				expression { params.ENVIRONMENT == 'op' }	
+			}
+			steps {
+				sh 'echo "Deploy APP"'
+			}
+		}
 	}
 }
