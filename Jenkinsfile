@@ -4,7 +4,7 @@ pipeline {
 		stage ('Version Maven') {
 			steps {
 				script {
-					echo "${env.BRANCH_NAME}"
+					sh 'echo "${env.BRANCH_NAME}"'
 					if (env.BRANCH_NAME == 'develop') {
 						sh '''
 						export MAVEN_HOME="/opt/apache-maven-3.8.6/bin"
